@@ -1,0 +1,14 @@
+/June14th_brotli_minimalTemplate.data.br
+  Content-Encoding: br
+  Content-Type: application/octet-stream
+
+/June14th_brotli_minimalTemplate.framework.js.br
+  Content-Encoding: br
+  Content-Type: application/javascript
+
+/June14th_brotli_minimalTemplate.loader.js
+  Content-Type: application/javascript
+
+/June14th_brotli_minimalTemplate.wasm.br
+  Content-Encoding: br
+  Content-Type: application/wasm
