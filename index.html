@@ -45,7 +45,8 @@
         canvas = document.querySelector("#unity-canvas");
         const loadingText = document.getElementById("loadingText");
         const loadingBar = document.getElementById("LoadingBar");
-        const CenterTable = document.getElementById("center-table");
+        const logo = document.getElementById("logo");
+        const logoText = document.getElementById("logo-text");
 
         createUnityInstance(canvas, {
             dataUrl: "Build/June14th_brotli_minimalTemplate.data",
@@ -64,13 +65,14 @@
             if (progress === 1) {
                 loadingText.style.display = 'none';
                 loadingBar.style.display = 'none';
-                CenterTable.style.display = 'none';
+                logo.style.display = 'none';
+                logoText.style.display = 'none';
             }
         }).then((unityInstance) => {
             // You can also hide loadingText here, to be extra safe
             loadingText.style.display = 'none';
             loadingBar.style.display = 'none';
-            CenterTable.style.display = 'none';
+            logo.style.display = 'none';
         }).catch((err) => {
             loadingText.innerText = "Failed to load Unity content.";
             console.error(err);
