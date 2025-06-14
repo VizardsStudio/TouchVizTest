@@ -25,6 +25,11 @@
 </head>
 <body style="text-align: center; padding: 0; border: 0; margin: 0;">
     <canvas id="unity-canvas" width="1511" height="850" tabindex="-1"></canvas>
+    <div id="loadingBox" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    color: white; font-family: sans-serif; font-size: 20px; z-index: 10;">
+  Loading... 0%
+</div>
+
     <script src="Build/June14th_brotli_minimalTemplate.loader.js"></script>
     <script>
         if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
@@ -53,6 +58,16 @@
             productVersion: "0.1.0",
             matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
             // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
+            // Add this:
+        progressCallback: function (progress) 
+        {
+            document.getElementById('loadingBox').innerText = `Loading... ${Math.round(progress * 100)}%`;
+            if (progress === 1) 
+            {
+                document.getElementById('loadingBox').style.display = 'none';
+            }
+        }
+
         });
 
         function resizeCanvas() 
