@@ -1,42 +1,28 @@
 <!DOCTYPE html>
 <html lang="en-us">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity Web Player | My project</title>
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            background: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        #unity-canvas {
-            background: #231F20;
-            display: block;
-        }
-    </style>
-
+    <link rel="stylesheet" href="assets/Style.css">
 </head>
+
+
 <body style="text-align: center; padding: 0; border: 0; margin: 0;">
     <canvas id="unity-canvas" width="1511" height="850" tabindex="-1"></canvas>
-<div id="loadingText" style="
-    position: absolute;
-    color: white;
-    font-family: sans-serif;
-    font-size: 20px;
-    top: 20px;
-    width: 100%;
-    text-align: center;
-    z-index: 10;">
-    Loading... 0%
-</div>
-
+    <div id="center-table">
+        <div id="center-cell">
+            <img id="logo" src="assets/Logo.png" alt="Logo">
+            <p id="logo-text">Application developed by Vizards Studio.</p>
+            <div id="loadingText">
+                Loading... 0%
+            </div>
+        </div>
+    </div>
+    <div id="LoadingBar">
+        
+    </div>
 
     <script src="Build/June14th_brotli_minimalTemplate.loader.js"></script>
     <script>
@@ -56,35 +42,37 @@
         }
 
 
-         canvas = document.querySelector("#unity-canvas");
-const loadingText = document.getElementById("loadingText");
+        canvas = document.querySelector("#unity-canvas");
+        const loadingText = document.getElementById("loadingText");
+        const loadingBar = document.getElementById("loadingBar");
 
-createUnityInstance(canvas, {
-    dataUrl: "Build/June14th_brotli_minimalTemplate.data",
-    frameworkUrl: "Build/June14th_brotli_minimalTemplate.framework.js",
-    codeUrl: "Build/June14th_brotli_minimalTemplate.wasm",
-    streamingAssetsUrl: "StreamingAssets",
-    companyName: "DefaultCompany",
-    productName: "My project",
-    productVersion: "0.1.0",
-}, (progress) => {
-    const percent = Math.round(progress * 100);
-    loadingText.innerText = `Loading... ${percent}%`;
+        createUnityInstance(canvas, {
+            dataUrl: "Build/June14th_brotli_minimalTemplate.data",
+            frameworkUrl: "Build/June14th_brotli_minimalTemplate.framework.js",
+            codeUrl: "Build/June14th_brotli_minimalTemplate.wasm",
+            streamingAssetsUrl: "StreamingAssets",
+            companyName: "DefaultCompany",
+            productName: "My project",
+            productVersion: "0.1.0",
+        }, (progress) => {
+            const percent = Math.round(progress * 100);
+            loadingText.innerText = `Loading... ${percent}%`;
+            loadingBar.style.width = `${percent}%`
 
-    // Optional: hide after 100%
-    if (progress === 1) {
-        loadingText.style.display = 'none';
-    }
-}).then((unityInstance) => {
-    // You can also hide loadingText here, to be extra safe
-}).catch((err) => {
-    loadingText.innerText = "Failed to load Unity content.";
-    console.error(err);
-});
+            // Optional: hide after 100%
+            if (progress === 1) {
+                loadingText.style.display = 'none';
+                loadingBar.style.display = 'none';
+            }
+        }).then((unityInstance) => {
+            // You can also hide loadingText here, to be extra safe
+        }).catch((err) => {
+            loadingText.innerText = "Failed to load Unity content.";
+            console.error(err);
+        });
 
 
-        function resizeCanvas() 
-        {
+        function resizeCanvas() {
             const canvas = document.getElementById('unity-canvas');
             const aspect = 16 / 9;
             let width = window.innerWidth;
@@ -108,4 +96,5 @@ createUnityInstance(canvas, {
 
     </script>
 </body>
+
 </html>

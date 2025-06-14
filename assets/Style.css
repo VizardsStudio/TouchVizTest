@@ -1,0 +1,62 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#unity-canvas {
+    background: #231F20;
+    display: block;
+}
+
+#center-table {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: table;
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+}
+
+#center-cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#logo {
+    max-width: 150px;
+    height: auto;
+}
+
+#logo-text {
+    margin: 15px 0 0 0;
+    font-size: 0.8rem;
+    opacity: 0.5;
+    color: white;
+}
+#loadingText {
+    margin: 5px 0 0 0;
+    color: white;
+    font-size: 0.8rem;
+    font-style: italic;
+    opacity: 0.5;
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+}
+#LoadingBar {
+    float: left;
+    width: 0%;
+    height: 2px;
+    background-color: #797979;
+    transform: translate(0, -2px);
+}
