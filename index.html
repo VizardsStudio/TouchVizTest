@@ -17,14 +17,8 @@
         }
 
         #unity-canvas {
-            aspect-ratio: 16 / 9;
-            max-width: 100vw;
-            max-height: 100vh;
-            width: auto;
-            height: auto;
             background: #231F20;
             display: block;
-            color: red;
         }
     </style>
 
@@ -61,8 +55,27 @@
             // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
         });
 
-        //here is some logic to handle the canvas size and have it update the unity instance
+        function resizeCanvas() 
+        {
+            const canvas = document.getElementById('unity-canvas');
+            const aspect = 16 / 9;
+            let width = window.innerWidth;
+            let height = window.innerHeight;
 
+            if (width / height > aspect) {
+                // Window is too wide → height is limiting
+                width = height * aspect;
+            } else {
+                // Window is too tall → width is limiting
+                height = width / aspect;
+            }
+
+            canvas.style.width = width + 'px';
+            canvas.style.height = height + 'px';
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('load', resizeCanvas);
 
 
     </script>
