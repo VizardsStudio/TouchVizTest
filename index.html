@@ -47,28 +47,33 @@
             document.body.style.textAlign = "left";
         }
 
-        createUnityInstance(document.querySelector("#unity-canvas"), {
-            arguments: [],
-            dataUrl: "Build/June14th_brotli_minimalTemplate.data",
-            frameworkUrl: "Build/June14th_brotli_minimalTemplate.framework.js",
-            codeUrl: "Build/June14th_brotli_minimalTemplate.wasm",
-            streamingAssetsUrl: "StreamingAssets",
-            companyName: "DefaultCompany",
-            productName: "My project",
-            productVersion: "0.1.0",
-            matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
-            // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
-            // Add this:
-        progressCallback: function (progress) 
-        {
-            document.getElementById('loadingBox').innerText = `Loading... ${Math.round(progress * 100)}%`;
-            if (progress === 1) 
-            {
-                document.getElementById('loadingBox').style.display = 'none';
-            }
-        }
 
-        });
+        const canvas = document.querySelector("#unity-canvas");
+const loadingText = document.getElementById("loadingText");
+
+createUnityInstance(canvas, {
+    dataUrl: "Build/June14th_brotli_minimalTemplate.data",
+    frameworkUrl: "Build/June14th_brotli_minimalTemplate.framework.js",
+    codeUrl: "Build/June14th_brotli_minimalTemplate.wasm",
+    streamingAssetsUrl: "StreamingAssets",
+    companyName: "DefaultCompany",
+    productName: "My project",
+    productVersion: "0.1.0",
+}, (progress) => {
+    const percent = Math.round(progress * 100);
+    loadingText.innerText = `Loading... ${percent}%`;
+
+    // Optional: hide after 100%
+    if (progress === 1) {
+        loadingText.style.display = 'none';
+    }
+}).then((unityInstance) => {
+    // You can also hide loadingText here, to be extra safe
+}).catch((err) => {
+    loadingText.innerText = "Failed to load Unity content.";
+    console.error(err);
+});
+
 
         function resizeCanvas() 
         {
