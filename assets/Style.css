@@ -56,19 +56,19 @@ body {
 }
 
 #LoadingBar {
-    height: 35px;
-    width: 0%;
+    height: 4vh;
+    width: 50%;
     background-image: url("project-pattern_beige.png");
     background-repeat: repeat-x;
     background-position: top left;
     background-size: auto 100%;
     opacity: 1;
     z-index: 20;
-    margin-top: -35px;
+    margin-top: -4vh;
 }
 
 .Pattern {
-    height: 35px;
+    height: 4vh;
     width: 100%;
     background-image: url("pattern.png");
     background-repeat: repeat-x;
