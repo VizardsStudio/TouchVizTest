@@ -26,14 +26,7 @@
     <script>
         // Unity will call this when it's fully loaded
         function onUnityLoad() {
-            //alert("Unity is done loading");
-            if (window.unityInstance) {
-                unityInstance.SendMessage("ApplicationManager","selectUnitByURL","message from js");
-            }
-            else{
-                console.warn("unable to call unity function");
-            }
-
+            alert("Unity is done loading");
         }
         const canvas = document.querySelector("#unity-canvas");
         const loadingText = document.getElementById("loadingText");
@@ -79,7 +72,6 @@
             loadingBar.style.display = 'none';
             logo.style.display = 'none';
             CenterTable.remove();
-            window.unityInstance = unityInstance;
         }).catch((err) => {
             loadingText.innerText = "Failed to load Unity content.";
             console.error(err);
