@@ -9,26 +9,25 @@
 </head>
 
 <body style="text-align: center; padding: 0; border: 0; margin: 0;">
-    <canvas id="unity-canvas" width=1511 height=850 tabindex="-1"></canvas>
+    <canvas id="unity-canvas" width=1511 height=850 tabindex="-1"
+        style="width: 1511px; height: 850px; background: #231F20"></canvas>
 
     <div id="center-table">
         <div id="center-cell">
             <img id="logo" src="assets/Logo.png" alt="Logo">
             <p id="logo-text">Application developed by Vizards Studio.</p>
-            <div id="loadingText">
-                Loading... 0%
-            </div>
+            <div id="loadingText">Loading... 0%</div>
         </div>
     </div>
     <div id="LoadingBar"></div>
 
     <script src="Build/June15_communicating with js.loader.js"></script>
     <script>
-        // Unity will call this when it's fully loaded
+        // Your original onUnityLoad
         function onUnityLoad() {
-
             unityInstance.SendMessage("ApplicationManager", "selectUnitByURL", GetQueryId());
         }
+
         function GetQueryId() {
             const params = new URLSearchParams(window.location.search);
             for (const [key, value] of params.entries()) {
@@ -36,16 +35,18 @@
                     return value;
                 }
             }
-            return "-1"; // or return "ID not found" if you prefer
+            return "-1";
         }
+
         const canvas = document.querySelector("#unity-canvas");
         const loadingText = document.getElementById("loadingText");
         const loadingBar = document.getElementById("LoadingBar");
         const logo = document.getElementById("logo");
         const logoText = document.getElementById("logo-text");
         const CenterTable = document.getElementById("center-table");
+
         if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-            var meta = document.createElement('meta');
+            const meta = document.createElement('meta');
             meta.name = 'viewport';
             meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
             document.getElementsByTagName('head')[0].appendChild(meta);
@@ -53,52 +54,49 @@
             canvas.style.width = "100%";
             canvas.style.height = "100%";
             canvas.style.position = "fixed";
-
             document.body.style.textAlign = "left";
         }
 
         createUnityInstance(canvas, {
             dataUrl: "Build/June15_communicating with js.data",
             frameworkUrl: "Build/June15_communicating with js.framework.js",
-            codeUrl: "Build/June15_communicating with js.wasm",
-            streamingAssetsUrl: "StreamingAssets",
+      codeUrl: "Build/June15_communicating with js.wasm",
+      streamingAssetsUrl: "StreamingAssets",
             companyName: "DefaultCompany",
             productName: "My project",
             productVersion: "0.1.0",
-        }, (progress) => {
-            const percent = Math.round(progress * 100);
-            loadingText.innerText = `Loading... ${percent}%`;
-            loadingBar.style.width = `${percent}%`;
+    }, (progress) => {
+                const percent = Math.round(progress * 100);
+                loadingText.innerText = `Loading... ${percent}%`;
+                loadingBar.style.width = `${percent}%`;
 
-            if (progress === 1) {
+                if (progress === 1) {
+                    loadingText.style.display = 'none';
+                    loadingBar.style.display = 'none';
+                    logo.style.display = 'none';
+                    logoText.style.display = 'none';
+                    CenterTable?.remove();
+                }
+            }).then((instance) => {
+                window.unityInstance = instance;
                 loadingText.style.display = 'none';
                 loadingBar.style.display = 'none';
                 logo.style.display = 'none';
                 logoText.style.display = 'none';
-                CenterTable.remove();
-            }
-        }).then((unityInstance) => {
-            loadingText.style.display = 'none';
-            loadingBar.style.display = 'none';
-            logo.style.display = 'none';
-            CenterTable.remove();
-            window.unityInstance = unityInstance;
-        }).catch((err) => {
-            loadingText.innerText = "Failed to load Unity content.";
-            console.error(err);
-        });
+                CenterTable?.remove();
+
+                onUnityLoad(); // Call your custom hook here
+            }).catch((err) => {
+                loadingText.innerText = "Failed to load Unity content.";
+                console.error(err);
+            });
 
         function resizeCanvas() {
             const aspect = 16 / 9;
             let width = window.innerWidth;
             let height = window.innerHeight;
-
-            if (width / height > aspect) {
-                width = height * aspect;
-            } else {
-                height = width / aspect;
-            }
-
+            if (width / height > aspect) width = height * aspect;
+            else height = width / aspect;
             canvas.style.width = width + 'px';
             canvas.style.height = height + 'px';
         }
