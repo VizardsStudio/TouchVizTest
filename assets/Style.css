@@ -57,7 +57,7 @@ body {
 
 #LoadingBar {
     height: 35px;
-    width: 10%;
+    width: 0%;
     background-image: url("project-pattern_beige.png");
     background-repeat: repeat-x;
     background-position: top left;
