@@ -9,17 +9,23 @@
 </head>
 
 <body style="text-align: center; padding: 0; border: 0; margin: 0;">
-    <canvas id="unity-canvas" width=1511 height=850 tabindex="-1"
-        style="width: 1511px; height: 850px; background: #231F20"></canvas>
+    <div class="thirdPat secondPat Pattern"></div>
+    <div class="secondPat Pattern"></div>
+    <div class="Pattern"></div>
+    <canvas id="unity-canvas" width=1511 height=850 tabindex="-1" style="width: 1511px; height: 850px;"></canvas>
+    <div class="Pattern" id="LoadingBar"></div>
+    <div class="Pattern"></div>
+    <div class="secondPat Pattern"></div>
+    <div class="thirdPat secondPat Pattern"></div>
 
     <div id="center-table">
         <div id="center-cell">
-            <img id="logo" src="assets/Logo.png" alt="Logo">
+            <img id="logo" src="assets/Progect-logo.png" alt="Logo">
             <p id="logo-text">Application developed by Vizards Studio.</p>
             <div id="loadingText">Loading... 0%</div>
         </div>
     </div>
-    <div id="LoadingBar"></div>
+
 
     <script src="Build/June15_communicating with js.loader.js"></script>
     <script>
@@ -60,36 +66,36 @@
         createUnityInstance(canvas, {
             dataUrl: "Build/June15_communicating with js.data",
             frameworkUrl: "Build/June15_communicating with js.framework.js",
-      codeUrl: "Build/June15_communicating with js.wasm",
-      streamingAssetsUrl: "StreamingAssets",
+            codeUrl: "Build/June15_communicating with js.wasm",
+            streamingAssetsUrl: "StreamingAssets",
             companyName: "DefaultCompany",
             productName: "My project",
             productVersion: "0.1.0",
-    }, (progress) => {
-                const percent = Math.round(progress * 100);
-                loadingText.innerText = `Loading... ${percent}%`;
-                loadingBar.style.width = `${percent}%`;
+        }, (progress) => {
+            const percent = Math.round(progress * 100);
+            loadingText.innerText = `Loading... ${percent}%`;
+            loadingBar.style.width = `${percent}%`;
 
-                if (progress === 1) {
-                    loadingText.style.display = 'none';
-                    loadingBar.style.display = 'none';
-                    logo.style.display = 'none';
-                    logoText.style.display = 'none';
-                    CenterTable?.remove();
-                }
-            }).then((instance) => {
-                window.unityInstance = instance;
+            if (progress === 1) {
                 loadingText.style.display = 'none';
                 loadingBar.style.display = 'none';
                 logo.style.display = 'none';
                 logoText.style.display = 'none';
                 CenterTable?.remove();
+            }
+        }).then((instance) => {
+            window.unityInstance = instance;
+            loadingText.style.display = 'none';
+            loadingBar.style.display = 'none';
+            logo.style.display = 'none';
+            logoText.style.display = 'none';
+            CenterTable?.remove();
 
-                onUnityLoad(); // Call your custom hook here
-            }).catch((err) => {
-                loadingText.innerText = "Failed to load Unity content.";
-                console.error(err);
-            });
+            onUnityLoad(); // Call your custom hook here
+        }).catch((err) => {
+            loadingText.innerText = "Failed to load Unity content.";
+            console.error(err);
+        });
 
         function resizeCanvas() {
             const aspect = 16 / 9;

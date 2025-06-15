@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     height: 100%;
-    background: #000;
+    background: #79614c;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,7 +12,7 @@ body {
 }
 
 #unity-canvas {
-    background: #231F20;
+    background: #023e3d;
     display: block;
 }
 
@@ -43,6 +43,7 @@ body {
     opacity: 0.5;
     color: white;
 }
+
 #loadingText {
     margin: 5px 0 0 0;
     color: white;
@@ -53,10 +54,34 @@ body {
     text-align: center;
     z-index: 10;
 }
+
 #LoadingBar {
-    float: left;
-    width: 0%;
-    height: 5px;
-    background-color: #797979;
-    transform: translate(0, -5px);
+    height: 35px;
+    width: 10%;
+    background-image: url("project-pattern_beige.png");
+    background-repeat: repeat-x;
+    background-position: top left;
+    background-size: auto 100%;
+    opacity: 1;
+    z-index: 20;
+    margin-top: -35px;
+}
+
+.Pattern {
+    height: 35px;
+    width: 100%;
+    background-image: url("pattern.png");
+    background-repeat: repeat-x;
+    background-position: top left;
+    background-size: auto 100%;
+    opacity: 1;
+    z-index: 20;
+}
+
+.secondPat {
+    opacity: 0.5;
+}
+
+.thirdPat {
+    opacity: 0.25;
 }
