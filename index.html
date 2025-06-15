@@ -47,6 +47,7 @@
         const loadingBar = document.getElementById("LoadingBar");
         const logo = document.getElementById("logo");
         const logoText = document.getElementById("logo-text");
+        const CenterTable = document.getElementById("center-table");
 
         createUnityInstance(canvas, {
             dataUrl: "Build/June14th_brotli_minimalTemplate.data",
@@ -67,6 +68,7 @@
                 loadingBar.style.display = 'none';
                 logo.style.display = 'none';
                 logoText.style.display = 'none';
+                CenterTable.remove();
             }
         }).then((unityInstance) => {
             // You can also hide loadingText here, to be extra safe
