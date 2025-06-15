@@ -27,7 +27,7 @@
         // Unity will call this when it's fully loaded
         function onUnityLoad() {
             
-            unityInstance.SendMessage("GameManager","selectUnitByURL", "text from js");
+            unityInstance.SendMessage("ApplicationManager","selectUnitByURL", "text from js");
         }
         const canvas = document.querySelector("#unity-canvas");
         const loadingText = document.getElementById("loadingText");
