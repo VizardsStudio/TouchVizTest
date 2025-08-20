@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "609865134053",
+    "firebase_url": "https://nawas-tower-default-rtdb.firebaseio.com",
+    "project_id": "nawas-tower",
+    "storage_bucket": "nawas-tower.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:609865134053:android:d00c51da04471ed4e2890c",
+        "android_client_info": {
+          "package_name": "com.vizards.NawasTower"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTYzpppWIMu7l074AcmE3DmmoAKTUWjP8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
