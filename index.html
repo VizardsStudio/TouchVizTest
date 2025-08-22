@@ -10,17 +10,19 @@
 
 <body style="text-align: center; padding: 0; border: 0; margin: 0;">
 
+    <div id="ApplicationWindow">
+        <canvas id="unity-canvas" width=1511 height=850 tabindex="-1"
+            style="width: 1511px; height: 850px; background: #231F20"></canvas>
+        <div id="rotateOverlay">
+            <img src="assets/rotate-icon.png" alt="Rotate your phone" />
+            <h1>Please rotate your phone</h1>
+        </div>
+    </div>
+
     <div id="fullscreenOverlay">
         <h1>Tap to enter fullscreen</h1>
     </div>
 
-    <div id="rotateOverlay">
-        <img src="assets/rotate-icon.png" alt="Rotate your phone" />
-        <h1>Please rotate your phone</h1>
-    </div>
-
-    <canvas id="unity-canvas" width=1511 height=850 tabindex="-1"
-        style="width: 1511px; height: 850px; background: #231F20"></canvas>
 
     <div id="center-table">
         <div id="center-cell">
@@ -35,11 +37,13 @@
     <script>
 
         const canvas = document.querySelector("#unity-canvas");
+        const applicationWindow = document.querySelector("#ApplicationWindow");
         const loadingText = document.getElementById("loadingText");
         const loadingBar = document.getElementById("LoadingBar");
         const logo = document.getElementById("logo");
         const logoText = document.getElementById("logo-text");
         const CenterTable = document.getElementById("center-table");
+        const testing = true;
 
         // Your original onUnityLoad
         function onUnityLoad() {
@@ -75,7 +79,7 @@
         // Method B: Actually enter fullscreen
         function enterFullscreen() {
             console.log("fullscreen function is called");
-            //const canvas = document.getElementById("unityCanvas");
+            const canvas = applicationWindow;
             if (canvas.requestFullscreen) {
                 canvas.requestFullscreen();
             } else if (canvas.webkitRequestFullscreen) { // Safari / iOS
@@ -166,11 +170,13 @@
         window.addEventListener('resize', checkOrientation);
         window.addEventListener('load', checkOrientation);
         window.addEventListener("orientationchange", checkOrientation);
-        /*
-        window.addEventListener("load", () => {
-            showFullscreenTapRequest();
-        });
-        */
+        if (testing) {
+            window.addEventListener("load", () => {
+                showFullscreenTapRequest();
+            });
+        }
+
+
     </script>
 </body>
 
