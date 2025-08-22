@@ -16,6 +16,68 @@ body {
     display: block;
 }
 
+@keyframes rotateAndBouncePhone {
+    0% {
+        transform: rotate(-15deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(15deg) translateY(-10px);
+    }
+
+    100% {
+        transform: rotate(-15deg) translateY(0);
+    }
+}
+
+#rotateOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    z-index: 9999;
+    display: none;
+}
+
+#rotateOverlay img {
+    max-width: 150px;
+    animation: rotateAndBouncePhone 1.5s infinite ease-in-out;
+}
+
+#rotateOverlay h1 {
+    font-family: 'Poppins', 'Segoe UI', 'Helvetica', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+}
+
+#fullscreenOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    z-index: 9999;
+    cursor: pointer;
+}
+
+
 #center-table {
     position: absolute;
     top: 50%;
@@ -43,6 +105,7 @@ body {
     opacity: 0.5;
     color: white;
 }
+
 #loadingText {
     margin: 5px 0 0 0;
     color: white;
@@ -53,6 +116,7 @@ body {
     text-align: center;
     z-index: 10;
 }
+
 #LoadingBar {
     float: left;
     width: 0%;
