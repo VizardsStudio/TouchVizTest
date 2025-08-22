@@ -30,6 +30,22 @@ body {
     }
 }
 
+@keyframes blink {
+
+    0%,
+    50%,
+    100% {
+        opacity: 1;
+        /* fully visible */
+    }
+
+    25%,
+    75% {
+        opacity: 0.2;
+        /* almost invisible */
+    }
+}
+
 #rotateOverlay {
     position: fixed;
     top: 0;
@@ -85,6 +101,8 @@ body {
     transform: translateX(-50%);
     /* center horizontally */
     margin: 0;
+    font-size: 1vw;
+    animation: blink 2s infinite ease-in-out;
 }
 
 #center-table {
