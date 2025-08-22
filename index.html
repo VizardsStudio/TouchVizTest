@@ -83,7 +83,7 @@
             } else if (canvas.msRequestFullscreen) { // IE/Edge
                 canvas.msRequestFullscreen();
             }
-
+            resizeCanvas();
             // Hide overlay after fullscreen request
             document.getElementById("fullscreenOverlay").style.display = "none";
         }
