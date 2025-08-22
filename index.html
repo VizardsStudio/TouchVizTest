@@ -4,6 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport"
+        content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
     <title>Unity Web Player | My project</title>
     <link rel="stylesheet" href="assets/Style.css">
 </head>
@@ -14,8 +16,7 @@
         <h1>Tap to enter fullscreen</h1>
     </div>
 
-    <div id="ApplicationWindow" width=1511 height=850 tabindex="-1"
-        style="width: 1511px; height: 850px; background: #231F20">
+    <div id="ApplicationWindow">
         <canvas id="unity-canvas" width=1511 height=850 tabindex="-1"
             style="width: 1511px; height: 850px; background: #231F20"></canvas>
         <div id="rotateOverlay">
@@ -48,6 +49,7 @@
         let isMobile = false;
         const testing = false;
 
+        /*
         if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
             isMobile = true;
             const meta = document.createElement('meta');
@@ -60,6 +62,7 @@
             canvas.style.position = "fixed";
             document.body.style.textAlign = "left";
         }
+        */
 
         // Your original onUnityLoad
         function onUnityLoad() {
