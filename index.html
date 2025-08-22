@@ -84,8 +84,24 @@
                 canvas.msRequestFullscreen();
             }
             resizeCanvas();
+            startOrientationWatcher();
             // Hide overlay after fullscreen request
             document.getElementById("fullscreenOverlay").style.display = "none";
+        }
+
+        function startOrientationWatcher() {
+            // Run check immediately
+            checkOrientation();
+
+            // Start polling every 500ms (adjust if needed)
+            orientationCheckInterval = setInterval(checkOrientation, 500);
+        }
+
+        function stopOrientationWatcher() {
+            if (orientationCheckInterval) {
+                clearInterval(orientationCheckInterval);
+                orientationCheckInterval = null;
+            }
         }
 
         if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
