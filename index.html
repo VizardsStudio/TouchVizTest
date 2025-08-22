@@ -44,6 +44,7 @@
         const logo = document.getElementById("logo");
         const logoText = document.getElementById("logo-text");
         const CenterTable = document.getElementById("center-table");
+        const isMobile = false;
         const testing = false;
 
         // Your original onUnityLoad
@@ -70,6 +71,9 @@
             }
         }
         function showFullscreenTapRequest() {
+            if (!isMobile) {
+                return;
+            }
             const overlay = document.getElementById("fullscreenOverlay");
             overlay.style.display = "flex"; // show overlay
 
@@ -110,6 +114,7 @@
         }
 
         if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+            isMobile = true;
             const meta = document.createElement('meta');
             meta.name = 'viewport';
             meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
