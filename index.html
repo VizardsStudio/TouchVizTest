@@ -49,6 +49,10 @@
         let isMobile = false;
         const testing = false;
 
+        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+            isMobile = true;
+        }
+
         /*
         if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
             isMobile = true;
