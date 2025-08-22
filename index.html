@@ -10,6 +10,10 @@
 
 <body style="text-align: center; padding: 0; border: 0; margin: 0;">
 
+    <div id="fullscreenOverlay">
+        <h1>Tap to enter fullscreen</h1>
+    </div>
+
     <div id="ApplicationWindow">
         <canvas id="unity-canvas" width=1511 height=850 tabindex="-1"
             style="width: 1511px; height: 850px; background: #231F20"></canvas>
@@ -19,9 +23,6 @@
         </div>
     </div>
 
-    <div id="fullscreenOverlay">
-        <h1>Tap to enter fullscreen</h1>
-    </div>
 
 
     <div id="center-table">
@@ -43,7 +44,7 @@
         const logo = document.getElementById("logo");
         const logoText = document.getElementById("logo-text");
         const CenterTable = document.getElementById("center-table");
-        const testing = true;
+        const testing = false;
 
         // Your original onUnityLoad
         function onUnityLoad() {
