@@ -20,7 +20,7 @@ body {
     display: flex;
     justify-content: center;
     /* horizontal center */
-    align-items: center;
+    /*align-items: center;*/
     /* vertical center */
     background: #231F20;
     /* optional background */
