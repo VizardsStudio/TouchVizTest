@@ -47,6 +47,19 @@
         const isMobile = false;
         const testing = false;
 
+        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+            isMobile = true;
+            const meta = document.createElement('meta');
+            meta.name = 'viewport';
+            meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+            document.getElementsByTagName('head')[0].appendChild(meta);
+
+            canvas.style.width = "100%";
+            canvas.style.height = "100%";
+            canvas.style.position = "fixed";
+            document.body.style.textAlign = "left";
+        }
+
         // Your original onUnityLoad
         function onUnityLoad() {
             unityInstance.SendMessage("ApplicationManager", "selectUnitByURL", GetQueryId());
@@ -64,6 +77,9 @@
         }
 
         function checkOrientation() {
+            if (testing) {
+                return;
+            }
             if (window.matchMedia("(orientation: portrait)").matches) {
                 document.getElementById("rotateOverlay").style.display = "flex";
             } else {
@@ -71,6 +87,9 @@
             }
         }
         function showFullscreenTapRequest() {
+            if (!isMobile) {
+                return;
+            }
             const overlay = document.getElementById("fullscreenOverlay");
             overlay.style.display = "flex"; // show overlay
 
@@ -78,7 +97,6 @@
             overlay.addEventListener("click", enterFullscreen);
         }
 
-        // Method B: Actually enter fullscreen
         function enterFullscreen() {
             console.log("fullscreen function is called");
             const canvas = applicationWindow;
@@ -90,7 +108,7 @@
                 canvas.msRequestFullscreen();
             }
             resizeCanvas();
-            startOrientationWatcher();
+            //startOrientationWatcher();
             // Hide overlay after fullscreen request
             document.getElementById("fullscreenOverlay").style.display = "none";
         }
@@ -108,19 +126,6 @@
                 clearInterval(orientationCheckInterval);
                 orientationCheckInterval = null;
             }
-        }
-
-        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-            isMobile = true;
-            const meta = document.createElement('meta');
-            meta.name = 'viewport';
-            meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
-            document.getElementsByTagName('head')[0].appendChild(meta);
-
-            canvas.style.width = "100%";
-            canvas.style.height = "100%";
-            canvas.style.position = "fixed";
-            document.body.style.textAlign = "left";
         }
 
         createUnityInstance(canvas,

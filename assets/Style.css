@@ -96,10 +96,8 @@ body {
 #fullscreenOverlay h1 {
     position: absolute;
     bottom: 50px;
-    /* distance from bottom */
     left: 50%;
     transform: translateX(-50%);
-    /* center horizontally */
     margin: 0;
     font-size: 1vw;
     animation: blink 2s infinite ease-in-out;
