@@ -24,8 +24,6 @@
         </div>
     </div>
 
-
-
     <div id="center-table">
         <div id="center-cell">
             <img id="logo" src="assets/Logo.png" alt="Logo">
@@ -46,11 +44,15 @@
         const logoText = document.getElementById("logo-text");
         const CenterTable = document.getElementById("center-table");
         let isMobile = false;
-        const testing = false;
+        const testing = true;
 
         if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
             isMobile = true;
         }
+        function downloadFile(url) {
+            window.open(url, "_blank");
+        }
+
 
         /*
         if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
@@ -188,6 +190,7 @@
             window.addEventListener("load", () => {
                 showFullscreenTapRequest();
             });
+            window.addEventListener("load", downloadFile("https://touchviz-test.netlify.app/assets/Catalogue.pdf"))
         }
 
 
