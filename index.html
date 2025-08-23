@@ -16,11 +16,29 @@
     </div>
 
     <div id="ApplicationWindow">
-        <canvas id="unity-canvas" width=1511 height=850 tabindex="-1"
+        <canvas id="unity-canvas" width="1511" height="850" tabindex="-1"
             style="width: 1511px; height: 850px; background: #231F20"></canvas>
+
         <div id="rotateOverlay">
             <img src="assets/rotate-icon.png" alt="Rotate your phone" />
             <h1>Please rotate your phone</h1>
+        </div>
+
+        <!-- Download overlay -->
+        <div id="downloadOverlay" style="position:absolute; top:0; left:0; width:100%; height:100%; 
+                display:none; align-items:center; justify-content:center; 
+                background:rgba(0,0,0,0.6); color:white; cursor:pointer; font-size:24px;">
+            <p>Click here to download</p>
+        </div>
+
+        <!--map overlay-->
+        <div id="mapOverlay" style="position:absolute; top:0; left:0; width:100%; height:100%; 
+            display:none; flex-direction:column; background:white; z-index:5;">
+            <div style="text-align:right; padding:10px; background:#222; color:white;">
+                <button onclick="closeMapOverlay()"
+                    style="background:red; color:white; border:none; padding:6px 12px; cursor:pointer; border-radius:6px;">Close</button>
+            </div>
+            <iframe id="mapFrame" src="" style="flex:1; border:none; width:100%;"></iframe>
         </div>
     </div>
 
@@ -44,13 +62,32 @@
         const logoText = document.getElementById("logo-text");
         const CenterTable = document.getElementById("center-table");
         let isMobile = false;
-        const testing = true;
+        const testing = false;
 
         if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
             isMobile = true;
         }
-        function downloadFile(url) {
-            window.open(url, "_blank");
+        function setupDownload(link) {
+            const overlay = document.getElementById("downloadOverlay");
+            overlay.style.display = "flex";
+            overlay.addEventListener("click", () => {
+                window.open(link, "_blank");
+                overlay.style.display = "none"; // hide overlay after click
+            });
+        }
+
+        function openMapOverlay(url) {
+            const overlay = document.getElementById("mapOverlay");
+            const frame = document.getElementById("mapFrame");
+            frame.src = url;
+            overlay.style.display = "flex";
+        }
+
+        function closeMapOverlay() {
+            const overlay = document.getElementById("mapOverlay");
+            const frame = document.getElementById("mapFrame");
+            frame.src = ""; // clear for cleanup
+            overlay.style.display = "none";
         }
 
 
@@ -190,7 +227,7 @@
             window.addEventListener("load", () => {
                 showFullscreenTapRequest();
             });
-            window.addEventListener("load", downloadFile("https://touchviz-test.netlify.app/assets/Catalogue.pdf"))
+            window.addEventListener("load", openMapOverlay("https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6669.219696097678!2d44.39417531593956!3d33.302868591384716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15577f67a0a74193%3A0x9deda9d2a3b16f2c!2sBaghdad%2C%20Baghdad%20Governorate!5e0!3m2!1sen!2siq!4v1755975821900!5m2!1sen!2siq"))
         }
 
 
