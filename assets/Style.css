@@ -19,13 +19,8 @@ body {
     height: 100%;
     display: flex;
     justify-content: center;
-    /* horizontal center */
-    /*align-items: center;*/
-    /* vertical center */
     background: #231F20;
-    /* optional background */
     position: relative;
-    /* for overlays */
 }
 
 #unity-canvas {
